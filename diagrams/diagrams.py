@@ -12,7 +12,7 @@ window = turtle.Screen()
 pen = turtle.Turtle()
 
 def word_counter(sentence):
-    word_dict = Counter(sentence.split())
+    word_dict = Counter(sentence.lower().split())
     return word_dict
 
 def frequencies_dict(word_dict):
