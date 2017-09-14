@@ -2,14 +2,13 @@ import argparse
 import turtle
 from collections import Counter
 
+
 ROUND_DEGREES = 360
+TITLES_IDENTATION = 200
 types = {}
 colors = [
     'red', 'blue', 'green', 'orange', 'yellow', 'aquamarine', 'azure', 'bisque', 'burlywood', 'chartreuse'
     ]
-
-window = turtle.Screen()
-pen = turtle.Turtle()
 
 def word_counter(sentence):
     word_dict = Counter(sentence.lower().split())
@@ -32,13 +31,13 @@ def add_to_dict(func):
 def sectors(sentence):
     words = frequencies_dict(word_counter(sentence))
     titles = {}
-    kantor = 0
+    count = 0
     old_pos = (0, 0)
     old_heading = 0
 
     #drawing sectors
     for elem in words:
-        pen.fillcolor(colors[kantor])
+        pen.fillcolor(colors[count])
         pen.begin_fill()
        
         pen.circle(100, words[elem]*ROUND_DEGREES)
@@ -51,15 +50,16 @@ def sectors(sentence):
         old_heading = pen.heading()
         old_pos = pen.pos()
 
-        titles[elem] = kantor
-        kantor = kantor + 1
+        titles[elem] = count
+        count = count + 1
 
     #drawing titles
-    kantor = 0
+    count = 0
     pen.up()
-    pen.goto(200,200)
+    pen.goto(TITLES_IDENTATION,TITLES_IDENTATION)
+
     for elem in titles:
-        pen.goto(200,200-kantor*20)
+        pen.goto(TITLES_IDENTATION,TITLES_IDENTATION-count*20)
         pen.down()
         #color identification
         pen.fillcolor(colors[titles[elem]])
@@ -71,19 +71,20 @@ def sectors(sentence):
         #title
         pen.goto(pen.xcor()+15, pen.ycor())
         pen.write(elem, font=("Arial", 11, "normal"))
-        kantor = kantor + 1
+        count = count + 1
+
     window.exitonclick()
 
 @add_to_dict
 def rays(sentence):
     words = word_counter(sentence)
-    kantor = 0
-    step = 50
-    gap = ROUND_DEGREES/len(words)
+    count = 0
+    step = 50   # scale of diagram
+    gap = ROUND_DEGREES/len(words) # angle between rays
 
     for elem in words:
-        pen.color(colors[kantor])
-        pen.setheading(kantor*gap)
+        pen.color(colors[count])
+        pen.setheading(count*gap)
         pen.down()
 
         for _ in range(0,words[elem]):
@@ -94,7 +95,7 @@ def rays(sentence):
         pen.fd(20)
         pen.write(elem, font=("Arial", 11, "normal"))
         pen.home()
-        kantor = kantor + 1
+        count = count + 1
 
     window.exitonclick()
 
@@ -102,8 +103,12 @@ def paint_diagram(sentence, dtype):
     types[dtype](sentence)
 
 if __name__ == "__main__":
+    window = turtle.Screen()
+    pen = turtle.Turtle()
+
     parser = argparse.ArgumentParser(description = "Constructing diagram of word frequencies in a sentence")
     parser.add_argument('-dtype', help = 'diagram type')
     parser.add_argument('-sentence', help = 'sentence to construct diagram from')
+
     args = parser.parse_args()
     paint_diagram(args.sentence, args.dtype)
