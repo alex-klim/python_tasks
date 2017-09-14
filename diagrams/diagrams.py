@@ -1,3 +1,7 @@
+'''A module for constructing diagrams of word frequencies in a sentence   
+'''
+__author__ = "Alexander Klimenko"
+
 import argparse
 import turtle
 from collections import Counter
