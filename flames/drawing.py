@@ -1,3 +1,5 @@
+import json
+import csv
 from PIL import Image, ImageDraw
 from funcs import *
 
@@ -53,7 +55,7 @@ def calculate (n, eqCount, it, xRes, yRes):
                         pixels.update({str(x1)+","+str(y1):buf})
                         pixels[str(x1)+","+str(y1)].count = 0
 
-    return pixels
+    return pixels, coeff
 
 def correction(pixels):
     maximus = 0.0
@@ -73,9 +75,9 @@ def correction(pixels):
 def draw(dots, lc, it, width, height):
     image = Image.new("RGBA", (width,height), "black")
     draw = ImageDraw.Draw(image)
-    pixels = calculate(dots, lc, it, width, height)
+    pixels, coeffs = calculate(dots, lc, it, width, height)
     pixels = correction(pixels)
     for pix in pixels:
         draw.point([pixels[pix].x,pixels[pix].y], fill=pixels[pix].color)
     del draw
-    image.save("test.png", "PNG")
+    return image, coeffs

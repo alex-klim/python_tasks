@@ -18,5 +18,17 @@ if __name__ == "__main__":
     parser.add_argument('--height', help='height of resulting image', default=1000, type=int)
 
     args = parser.parse_args()
-
-    draw(**vars(args))
+    image, coeffs = draw(**vars(args))
+    
+    #exporting results
+    image.save("test.png", "PNG")
+    with open('coeffs.txt', 'w') as outfile:
+        json.dump(coeffs, outfile)
+    with open('parameters.txt', 'w') as outfile:
+        for arg in vars(args):
+            outfile.write(str(vars(args)[arg]))
+            outfile.write('\n')
+    with open('non-linears.txt', 'w') as outfile:
+        for func in non_linears:
+            outfile.write(func.__name__)
+            outfile.write('\n')
