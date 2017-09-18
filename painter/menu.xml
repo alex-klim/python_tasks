@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root>
-    <open>
-        <prompt>Enter filename</prompt>
-        <function>open</function>
+<root prompt='choose one of these options:' args='1'>
+    <open prompt = 'Enter filename' function = 'open'>
+        <!--<prompt></prompt>
+        <function></function>-->
     </open>
 
-    <add>
-        <prompt>Enter shape type</prompt>
+    <add prompt = 'Enter shape type'>
+        <!--<prompt></prompt>-->
         <siblings>
-            <square>
-                <prompt>Enter left bottom corner coordinates and side of square</prompt>
+            <square prompt = 'Enter left bottom corner coordinates and side of square'
+            function='square' epilog='Square added to image'>
+                <!--<prompt>Enter left bottom corner coordinates and side of square</prompt>
                 <function>square</function>
-                <epilog>Square added to image</epilog>
+                <epilog>Square added to image</epilog>-->
             </square>
 
-            <circle>
-                <prompt>Enter center coordinates and radius</prompt>
+            <circle prompt='Enter center coordinates and radius' function='circle' epilog='Circle added to image'>
+                <!--<prompt>Enter center coordinates and radius</prompt>
                 <function>circle</function>
-                <epilog>Circle added to image</epilog>
+                <epilog>Circle added to image</epilog>-->
             </circle>
         </siblings>
     </add>
