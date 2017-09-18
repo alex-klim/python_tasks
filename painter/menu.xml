@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <open>
+        <prompt>Enter filename</prompt>
+        <function>open</function>
+    </open>
+
+    <add>
+        <prompt>Enter shape type</prompt>
+        <siblings>
+            <square>
+                <prompt>Enter left bottom corner coordinates and side of square</prompt>
+                <function>square</function>
+                <epilog>Square added to image</epilog>
+            </square>
+
+            <circle>
+                <prompt>Enter center coordinates and radius</prompt>
+                <function>circle</function>
+                <epilog>Circle added to image</epilog>
+            </circle>
+        </siblings>
+    </add>
+
+    <show>
+        <prompt>Here are content of image</prompt>
+        <function>show</function>
+    </show>
+
+    <draw>
+        <prompt>Image is drawing..</prompt>
+        <function>draw</function>
+    </draw>
+
+    <create>
+        <prompt>Activating new data structure..</prompt>
+        <function>create</function>
+        <sublings>
+            <save>
+                <prompt>Do you wanna save the image?</prompt>
+                <function>save</function>
+            </save>
+        </sublings>
+    </create>
+
+    <save>
+        <prompt>Saving image..</prompt>
+        <function>save</function>
+    </save>
+
+    <exit>
+        <prompt>Exiting..</prompt>
+        <function>exit</function>
+    </exit>
+</root>
