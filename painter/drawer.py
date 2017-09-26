@@ -1,43 +1,27 @@
 import turtle
-from validator import *
+from shape import *
 
+class Drawer:
 
-screen = None
-pen = None
+    def __init__(self, pen=None, screen=None):
+        if pen is None:
+            self.pen = turtle.Turtle()
+        else:
+            self.pen = pen
+        if screen is None:
+            self.screen = turtle.Screen()
+        else:
+            self.screen = screen
 
-def init_screen():
-    global screen, pen
-    pen = pen or turtle.Turtle()
-    screen = turtle.Screen()
-    screen.reset()
-    return pen, screen
+    def draw(self, shape):
+        try:
+            shape.draw(self.pen)
+        except AttributeError:
+            print("Not a drawable object")
 
-def close_screen():
-    global screen
-    if screen:
-        screen.bye()
-
-@circle_validator
-def draw_circle(pen, x=0, y=0, r=100):
-    pen.up()
-    pen.goto(x,y-r)
-    pen.down()
-    pen.circle(r)
-    pen.up()
-    pen.home()
-
-@rectangle_validator
-def draw_rectangle(pen, x=0, y=0, a=100, b=200):
-    pen.up()
-    pen.goto(x,y)
-    pen.down()
-    pen.forward(a)
-    pen.left(90)
-    pen.forward(b)
-    pen.left(90)
-    pen.forward(a)
-    pen.left(90)
-    pen.forward(b)
-    pen.left(90)
-    pen.up()
-    pen.home()
+    def clearscreen(self):
+        self.pen.clear()
+    
+    def close_screen(self):
+        if self.screen:
+            self.screen.bye()

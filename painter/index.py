@@ -1,8 +1,9 @@
-import generator
+from controller import Controller
+from menu import menu
 
 
 if __name__ =="__main__":
-    cmd = generator.cli(generator.menu)
-    while not generator.interrupted:
+    ctrl = Controller(menu)
+    cmd = ctrl.cli(ctrl.menu)
+    while not ctrl.interrupted:
         command = next(cmd)
-        # print('We are in the node named: ', command)

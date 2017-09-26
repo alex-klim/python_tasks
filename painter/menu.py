@@ -1,20 +1,16 @@
-from controller import *
-
 menu = {
     'name' : 'root',
-    'prompt' : 'Choose your destiny',
+    'prompt' : 'What are you gonna do(open/save/add/show/draw/exit)',
     'siblings' : [
             {   
                 'name' : 'open',
                 'prompt' : 'enter filename',
-                'func' : open,
-                'epilogue' : 'file opened'
+                'func' : 'open_file'
             },
             {
                 'name' : 'save',
                 'prompt' : 'enter filename',
-                'func' : save,
-                'epilogue' : 'file saved'
+                'func' : 'save_file'
             },
             {
                 'name' : 'add',
@@ -22,32 +18,30 @@ menu = {
                 'siblings' : [
                     {
                     'name' : 'circle',
-                    'prompt' : 'enter x, y, radius',
-                    'func' : draw_circle,
-                    'epilogue' : 'circle added to image'
+                    'prompt' : 'constructing circle:',
+                    'func' : 'add_figure'
                     },
                     {
                     'name' : 'rectangle',
-                    'prompt' : 'enter x, y, side1, side2',
-                    'func' : draw_rectangle,
-                    'epilogue' : 'circle added to image'
+                    'prompt' : 'constructing rectangle',
+                    'func' : 'add_figure'
                     }
                 ]
                 },
             {
                 'name' : 'show',
-                'prompt' : "Here what we've got",
-                'func' : show
+                'prompt' : "Here what we've got\n",
+                'func' : 'show'
             },
             {
                 'name' : 'draw',
                 'prompt' : 'start drawing..',
-                'func' : draw
+                'func' : 'draw'
             },
             {
                 'name' : 'exit',
                 'prompt' : 'bye!',
-                'func' : exit
+                'func' : 'exit'
             }
     ]
 }
