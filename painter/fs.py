@@ -1,8 +1,6 @@
 import json, pickle
 
 
-data = {'somedata':25, 'anotherdata':{'someshit':15}}
-
 def save_json(data, filename='data.json'):
     with open(filename, 'w') as f:
         json.dump(data, f)
