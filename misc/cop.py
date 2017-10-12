@@ -2,6 +2,7 @@ import shutil
 import click
 import time
 import os
+import glob
 from concurrent.futures import ThreadPoolExecutor
 
 
@@ -33,14 +34,12 @@ def start_tasks(operation, files, dst, threads):
                     shutil.copytree(fil, dst)
                 else:
                     shutil.copy(fil, dst)
-                shutil.copy()
 
         elif operation == 'move':
             for fil in files:
                 shutil.move(fil, dst)
         pool.shutdown()
-    time.sleep(10)
-    print('yse')
+    print('done')
 
 @click.command()
 @click.option('--operation', type=click.Choice(['copy', 'move']), help='choose copy or move')
